@@ -24,6 +24,7 @@ router.post('/registration', (req, res) => {
 
     // TODO: Convert so that it is saving data coming from the view
     // TODO: Have bcrypt process the passwords to ensure security
+    // Hash passwords
 
     const testData = {
         username: 'leanjunio',
