@@ -1,9 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const app = express();
 
 // app configuration
 const PORT = process.env.PORT || 8080;
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Connect to mongoose
 mongoose.connect('mongodb://localhost:27017/Calendar');

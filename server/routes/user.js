@@ -13,7 +13,6 @@ router.get('/registration', (req, res) => {
 
     // Get all registered users
     User.find({}, (err, users) => {
-        console.log(users);
         if (err) throw err;
         else res.json(users);
     })
@@ -23,22 +22,24 @@ router.get('/registration', (req, res) => {
 router.post('/registration', (req, res) => {
 
     // TODO: Convert so that it is saving data coming from the view
-    // TODO: Have bcrypt process the passwords to ensure security
-    // Hash passwords
+    const dataCheck = req.body.username && req.body.password && req.body.email;
 
-    const testData = {
-        username: 'leanjunio',
-        password: 'password123',
-        email: 'leanjunio@live.com'
-    }
-
-    User.create(testData, (err, user) => {
-        if (err) throw err;
-        else {
-            console.log(`CREATING USER`);
-            res.redirect('/success');
+    if (dataCheck) {
+        const userData = {
+            username: req.body.username,
+            password: req.body.password,
+            email: req.body.email
         }
-    });
+    
+        User.create(userData, (err, user) => {
+            if (err) throw err;
+            else {
+                res.redirect('/success');
+            }
+        });
+    } else {
+        res.send('Missing parameteres');
+    }
 });
 
 module.exports = router;
