@@ -25,13 +25,13 @@ const UserSchema = new Schema({
 });
 
 // Hash passwords before saving to database
-UserSchema.pre('save', (next) => {
-    const user = this;
-    bcrypt.hash(user.password, 10, (err, hash) => {
-        if (err) throw err;
-
-        user.password = hash;
-        next();
+UserSchema.pre('validate', function(next) {
+    bcrypt.genSalt(10, (err, result) => {
+        if (err) return next(err);
+        else {
+            this.password = bcrypt.hashSync(this.password, result);
+            next();
+        }
     });
 });
 
