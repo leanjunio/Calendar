@@ -28,13 +28,16 @@ router.post('/registration', (req, res) => {
 
     const testData = {
         username: 'leanjunio',
-        password: 'password',
+        password: 'password123',
         email: 'leanjunio@live.com'
     }
 
     User.create(testData, (err, user) => {
         if (err) throw err;
-        else res.redirect('/success');
+        else {
+            console.log(`CREATING USER`);
+            res.redirect('/success');
+        }
     });
 });
 
