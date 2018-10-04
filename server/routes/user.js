@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const User = require('../models/users');
 
 /**
  * User Routes
@@ -6,12 +7,34 @@ const router = require('express').Router();
  * - GET: /user/registration
  * - POST: /user/registration
  */
+
+//  Returns a list of all the registered users
 router.get('/registration', (req, res) => {
-    res.send('TODO: respond with registration view from client');
+
+    // Get all registered users
+    User.find({}, (err, users) => {
+        console.log(users);
+        if (err) throw err;
+        else res.json(users);
+    })
 });
 
+// Posts information to be saved on the Database
 router.post('/registration', (req, res) => {
-    res.send('TODO: Post mock data to mongoose');
+
+    // TODO: Convert so that it is saving data coming from the view
+    // TODO: Have bcrypt process the passwords to ensure security
+
+    const testData = {
+        username: 'leanjunio',
+        password: 'password',
+        email: 'leanjunio@live.com'
+    }
+
+    User.create(testData, (err, user) => {
+        if (err) throw err;
+        else res.redirect('/success');
+    });
 });
 
 module.exports = router;

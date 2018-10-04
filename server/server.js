@@ -1,8 +1,12 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
 
 // app configuration
 const PORT = process.env.PORT || 8080;
+
+// Connect to mongoose
+mongoose.connect('mongodb://localhost:27017/Calendar');
 
 // Routes
 const userRoutes = require('./routes/user');
@@ -11,4 +15,4 @@ const calRoutes = require('./routes/calendar');
 app.use('/user', userRoutes);
 app.use('/calendar', calRoutes);
 
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));1
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
