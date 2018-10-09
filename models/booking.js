@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
  * Bookings must have:
  * - Date (time included)
  * - Owner (Who created the booking)
- * - Description (Room number, etc)
+ * - Room
  */
 
 const UserSchema = new Schema({
@@ -18,7 +18,7 @@ const UserSchema = new Schema({
         type: String,       // TODO: Find a way to attach to a model
         required: true
     },
-    Description: {
+    Room: {
         type: String,
         required: true
     }
