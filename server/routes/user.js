@@ -15,7 +15,7 @@ router.get('/registration', (req, res) => {
     User.find({}, (err, users) => {
         if (err) throw err;
         else res.json(users);
-    })
+    });
 });
 
 // Posts information to be saved on the Database
