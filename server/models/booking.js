@@ -8,20 +8,19 @@ const Schema = mongoose.Schema;
  * - Room
  */
 
-const UserSchema = new Schema({
-    Date: {
+const BookingSchema = new Schema({
+    date: {
         type: Date,
-        required: true,
-        defauled: Date.now()
+        default: Date.now()
     },
-    Owner: {
+    owner: {
         type: String,       // TODO: Find a way to attach to a model
         required: true
     },
-    Room: {
+    room: {
         type: String,
         required: true
     }
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Booking', BookingSchema);
