@@ -6,7 +6,7 @@ const router = require('express').Router();
  * - GET: /
  * - POST: /
  */
-
+ 
 router.get('/', (req, res) => {
     res.send('TODO: Get calendar view with complete schedules');
 });
