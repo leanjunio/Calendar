@@ -7,7 +7,7 @@ const Booking = require('../models/booking');
  * - GET: /
  * - POST: /
  */
-
+ 
 router.get('/', (req, res) => {
 
     Booking.find({}, (err, bookings) => {
