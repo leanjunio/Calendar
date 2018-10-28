@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      
-    }
+  
+  state = {
+    bookings: []
   }
+
+  componentDidMount() {
+    Axios.get(`http://localhost:8080/calendar`)
+      .then(res => {
+        const bookings = res.data;
+        this.setState({ bookings });
+      });
+  }
+
   render() {
     return (
       <div>
-
+        <ul>{ this.state.bookings.map(booking => <li>{booking.name} - {booking.room}</li>)}</ul>
       </div>
     );
   }
