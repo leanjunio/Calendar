@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const Booking = require('../models/booking');
 
 /**
  * Calendar Routes
@@ -8,11 +9,32 @@ const router = require('express').Router();
  */
 
 router.get('/', (req, res) => {
-    res.send('TODO: Get calendar view with complete schedules');
+
+    Booking.find({}, (err, bookings) => {
+        if (err) throw err;
+        else res.json(bookings);
+    })
 });
 
 router.post('/', (req, res) => {
-    res.send('TODO: Post booking to mongoose');
+    const dataCheck = req.body.owner && req.body.room;
+
+    if (dataCheck) {
+        const userData = {
+            owner: req.body.owner,
+            room: req.body.room,
+        }
+
+        Booking.create(userData, (err, booking) => {
+            if (err)
+                throw err;
+            else
+                res.send(booking)
+        })
+    } else {
+        res.send('Missing parameteres');
+    }
+
 });
 
 module.exports = router;
