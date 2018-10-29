@@ -3,9 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import Bookings from './Bookings'
 
-
 class App extends Component {
-
   render() {
     return (
       <div>
@@ -22,8 +20,6 @@ class App extends Component {
             <Route path="/bookings" component={Bookings} />
           </div>
         </Router>
-
-
       </div>
     );
   }
