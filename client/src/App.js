@@ -1,38 +1,29 @@
 import React, { Component } from 'react';
-import { Table } from 'reactstrap';
-import Axios from 'axios';
-import Booking from './Booking'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+import Bookings from './Bookings'
+
 
 class App extends Component {
-  
-  state = {
-    bookings: []
-  }
-
-  componentDidMount() {
-    Axios.get(`http://localhost:8080/calendar`)
-      .then(res => {
-        const bookings = res.data;
-        this.setState({ bookings });
-      })
-      .catch(err => console.log(err))
-  }
 
   render() {
     return (
       <div>
-        <Table>
-          <thead>
-            <tr>
-              <th>Owner</th>
-              <th>Room #</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.state.bookings.map(booking => <Booking book={booking}/> )}
-          </tbody>
-        </Table>
+        <Router>
+          <div>
+            <ul>
+              <li>
+                <Link to="/bookings">Bookings</Link>
+              </li>
+            </ul>
+
+            <hr />
+
+            <Route path="/bookings" component={Bookings} />
+          </div>
+        </Router>
+
+
       </div>
     );
   }
