@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Table } from 'reactstrap';
 import Axios from 'axios';
+import Booking from './Booking'
 
 class App extends Component {
   
@@ -12,13 +14,25 @@ class App extends Component {
       .then(res => {
         const bookings = res.data;
         this.setState({ bookings });
-      });
+      })
+      .catch(err => console.log(err))
   }
 
   render() {
     return (
       <div>
-        <ul>{ this.state.bookings.map(booking => <li>{booking.name} - {booking.room}</li>)}</ul>
+        <Table>
+          <thead>
+            <tr>
+              <th>Owner</th>
+              <th>Room #</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            { this.state.bookings.map(booking => <Booking book={booking}/> )}
+          </tbody>
+        </Table>
       </div>
     );
   }
