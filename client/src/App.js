@@ -34,20 +34,29 @@ class App extends Component {
   }
   render() {
     return (
-      <Navbar color="light" light expand="md">    
-        <Router>
-          <div>
-            <ul>
-              <li>
-                <Link to="/bookings">Bookings</Link>
-              </li>
-            </ul>
-            <hr />
-            <Route path="/bookings" component={Bookings} />
-          </div>
-        </Router>
-      </Navbar>
-      
+      <Router>
+        <div>
+          <Navbar color="light" light expand="md">
+            <NavbarBrand to="/">Calendar</NavbarBrand>
+            <NavbarToggler onClick={this.toggle} />
+            <Collapse isOpen={this.state.isOpen} navbar>
+              <Nav className="ml-auto" navbar>
+                <NavItem>
+                  <NavLink tag={Link} to="/bookings">Bookings</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink  tag={Link} to="/bookings/add">Add Booking</NavLink>
+                </NavItem>
+              </Nav>
+            </Collapse>
+          </Navbar>
+          <Route path="/" component={Bookings} />
+          <Route path="/bookings" component={Bookings} />
+          <Route path="/bookings/add" component={Bookings} />
+        </div>
+      </Router>
+
+
     );
   }
 }
