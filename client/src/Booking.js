@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Moment from 'react-moment';
 
 class Booking extends Component {
   constructor(props) {
@@ -24,7 +25,9 @@ class Booking extends Component {
       <tr>
         <td>{this.state.owner}</td>
         <td>{this.state.room}</td>
-        <td>{this.state.date}</td>
+        <td>
+          <Moment format="dddd, MMMM Do YYYY, h:mm a">{this.state.date}</Moment>
+        </td>
       </tr>
     )
   }

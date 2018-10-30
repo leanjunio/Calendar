@@ -3,9 +3,9 @@ import { Container, Button, Form, FormGroup, Label, Input, FormText } from 'reac
 import Axios from 'axios';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import { Redirect } from 'react-router-dom';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import { Redirect } from 'react-router-dom';
 
 class AddBooking extends Component {
   constructor(props) {
@@ -78,8 +78,9 @@ class AddBooking extends Component {
               showTimeSelect
               timeFormat="HH:mm"
               timeIntervals={15}
-              dateFormat="LLL"
+              dateFormat="YYYY/MM/DD"
               timeCaption="time"
+              locale="en-ca"
             />
           </FormGroup>
           <FormGroup>
