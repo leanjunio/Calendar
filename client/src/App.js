@@ -16,6 +16,7 @@ import {
 } from 'reactstrap';
 
 import Bookings from './Bookings'
+import AddBooking from './AddBooking'
 
 class App extends Component {
   constructor(props) {
@@ -42,17 +43,14 @@ class App extends Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <NavLink tag={Link} to="/bookings">Bookings</NavLink>
-                </NavItem>
-                <NavItem>
                   <NavLink  tag={Link} to="/bookings/add">Add Booking</NavLink>
                 </NavItem>
               </Nav>
             </Collapse>
           </Navbar>
+
           <Route path="/" component={Bookings} />
-          <Route path="/bookings" component={Bookings} />
-          <Route path="/bookings/add" component={Bookings} />
+          <Route path="/bookings/add" component={AddBooking} />
         </div>
       </Router>
 
