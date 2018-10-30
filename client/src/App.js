@@ -49,7 +49,7 @@ class App extends Component {
             </Collapse>
           </Navbar>
 
-          <Route path="/" component={Bookings} />
+          <Route exact path="/" component={Bookings} />
           <Route path="/bookings/add" component={AddBooking} />
         </div>
       </Router>
