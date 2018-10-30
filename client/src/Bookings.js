@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table } from 'reactstrap';
+import { Table, Container } from 'reactstrap';
 import Axios from 'axios';
 
 import Booking from './Booking'
@@ -20,18 +20,20 @@ class Bookings extends Component {
 
   render() {
     return (
-      <Table>
-        <thead>
-          <tr>
-            <th>Owner</th>
-            <th>Room #</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.bookings.map(booking => <Booking book={booking} />)}
-        </tbody>
-      </Table>
+      <Container>
+        <Table>
+          <thead>
+            <tr>
+              <th>Owner</th>
+              <th>Room #</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.bookings.map(booking => <Booking book={booking} />)}
+          </tbody>
+        </Table>
+      </Container>
     )
   }
 }

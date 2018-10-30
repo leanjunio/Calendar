@@ -9,6 +9,7 @@ import {
   Nav,
   NavItem,
   NavLink,
+  Container,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -38,17 +39,17 @@ class App extends Component {
       <Router>
         <div>
           <Navbar color="light" light expand="md">
-            <NavbarBrand to="/">Calendar</NavbarBrand>
+            <NavbarBrand tag={Link} to="/">Calendar</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <NavLink  tag={Link} to="/bookings/add">Add Booking</NavLink>
+                  <NavLink tag={Link} to="/bookings/add">Add Booking</NavLink>
                 </NavItem>
               </Nav>
             </Collapse>
           </Navbar>
-
+          
           <Route exact path="/" component={Bookings} />
           <Route path="/bookings/add" component={AddBooking} />
         </div>
