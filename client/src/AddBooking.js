@@ -5,6 +5,7 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import { Redirect } from 'react-router-dom';
 
 class AddBooking extends Component {
   constructor(props) {
@@ -13,7 +14,8 @@ class AddBooking extends Component {
     this.state = {
       startDate: moment(),
       owner: '',
-      room: ''
+      room: '',
+      redirectToHome: false
     }
     this.handleChangeDate = this.handleChangeDate.bind(this);
     this.handleChangeOwner = this.handleChangeOwner.bind(this);
@@ -43,52 +45,58 @@ class AddBooking extends Component {
       owner: this.state.owner,
       room: this.state.room
     })
-      .then((res) => console.log(res))
+      .then((res) => {
+        this.setState({ redirectToHome: true })
+        console.log(res)
+      })
       .catch ((err) => console.log(err));
   }
-render() {
-  return (
-    <Container>
-      <Form>
-        <FormGroup>
-          <Label for="Owner">Owner</Label>
-          <Input
-            value={this.state.owner}
-            onChange={this.handleChangeOwner}
-            type="text"
-            name="owner"
-            id="idOwner"
-            placeholder="John Doe"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="Date">Date - Time (YYYY-MM-DDT00:00)</Label>
-          <DatePicker
-            selected={this.state.startDate}
-            onChange={this.handleChangeDate}
-            showTimeSelect
-            timeFormat="HH:mm"
-            timeIntervals={15}
-            dateFormat="LLL"
-            timeCaption="time"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="Room">Room</Label>
-          <Input
-            value={this.state.room}
-            onChange={this.handleChangeRoom}
-            type="text"
-            name="room"
-            id="idRoom"
-            placeholder="DB4040"
-          />
-        </FormGroup>
+  render() {
+    if (this.state.redirectToHome) {
+      return <Redirect push to="/" />
+    }
+    
+    return (
+      <Container>
+        <Form>
+          <FormGroup>
+            <Label for="Owner">Owner</Label>
+            <Input
+              value={this.state.owner}
+              onChange={this.handleChangeOwner}
+              type="text"
+              name="owner"
+              id="idOwner"
+              placeholder="John Doe"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="Date">Date - Time (YYYY-MM-DDT00:00)</Label>
+            <DatePicker
+              selected={this.state.startDate}
+              onChange={this.handleChangeDate}
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={15}
+              dateFormat="LLL"
+              timeCaption="time"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="Room">Room</Label>
+            <Input
+              value={this.state.room}
+              onChange={this.handleChangeRoom}
+              type="text"
+              name="room"
+              id="idRoom"
+              placeholder="DB4040"
+            />
+          </FormGroup>
         <Button onClick={this.handleSubmit}>Submit</Button>
       </Form>
     </Container>
-  )
-}
+  )}
 }
 
 export default AddBooking;
