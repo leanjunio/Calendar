@@ -19,9 +19,9 @@ class AddBooking extends Component {
     this.handleChangeRoom = this.handleChangeRoom.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChangeDate(e) {
+  handleChangeDate(date) {
     this.setState({
-      startDate: e.target.value
+      startDate: date
     });
   }
   handleChangeOwner(e) {
