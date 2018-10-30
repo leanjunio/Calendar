@@ -14,15 +14,26 @@ class AddBooking extends Component {
       owner: '',
       room: ''
     }
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeDate = this.handleChangeDate.bind(this);
+    this.handleChangeOwner = this.handleChangeOwner.bind(this);
+    this.handleChangeRoom = this.handleChangeRoom.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChange(e) {
+  handleChangeDate(e) {
     this.setState({
       startDate: e.target.value
     });
   }
-  saveToMongo() {
-    
+  handleChangeOwner(e) {
+    this.setState({ owner: e.target.value })
+  }
+  handleChangeRoom(e) {
+    this.setState({ room: e.target.value })
+  }
+  handleSubmit() {
+    alert(`Date: ${this.state.startDate}`)
+    alert(`Room: ${this.state.room}`)
+    alert(`Owner: ${this.state.owner}`)
   }
   render() {
     return (
@@ -31,6 +42,8 @@ class AddBooking extends Component {
           <FormGroup>
             <Label for="Owner">Owner</Label>
             <Input 
+              value={this.state.owner}
+              onChange={this.handleChangeOwner}
               type="text" 
               name="owner" 
               id="idOwner" 
@@ -41,7 +54,7 @@ class AddBooking extends Component {
             <Label for="Date">Date - Time (YYYY-MM-DDT00:00)</Label>
             <DatePicker
               selected={this.state.startDate}
-              onChange={this.handleChange}
+              onChange={this.handleChangeDate}
               showTimeSelect
               timeFormat="HH:mm"
               timeIntervals={15}
@@ -51,9 +64,16 @@ class AddBooking extends Component {
           </FormGroup>
           <FormGroup>
             <Label for="Room">Room</Label>
-            <Input type="text" name="room" id="idRoom" placeholder="DB4040" />
+            <Input 
+              value={this.state.room}
+              onChange={this.handleChangeRoom}
+              type="text" 
+              name="room" 
+              id="idRoom" 
+              placeholder="DB4040"
+            />
           </FormGroup>
-          <Button>Submit</Button>
+          <Button onClick={this.handleSubmit}>Submit</Button>
         </Form>
       </Container>
     )
