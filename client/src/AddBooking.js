@@ -10,14 +10,19 @@ class AddBooking extends Component {
     super(props)
 
     this.state = {
-      startDate: moment()
+      startDate: moment(),
+      owner: '',
+      room: ''
     }
     this.handleChange = this.handleChange.bind(this);
   }
-  handleChange(date) {
+  handleChange(e) {
     this.setState({
-      startDate: date
+      startDate: e.target.value
     });
+  }
+  saveToMongo() {
+    
   }
   render() {
     return (
@@ -25,7 +30,12 @@ class AddBooking extends Component {
         <Form>
           <FormGroup>
             <Label for="Owner">Owner</Label>
-            <Input type="text" name="owner" id="idOwner" placeholder="John Doe" />
+            <Input 
+              type="text" 
+              name="owner" 
+              id="idOwner" 
+              placeholder="John Doe"
+            />
           </FormGroup>
           <FormGroup>
             <Label for="Date">Date - Time (YYYY-MM-DDT00:00)</Label>
