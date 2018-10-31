@@ -10,22 +10,22 @@ import 'react-datepicker/dist/react-datepicker.css';
 class AddBooking extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       startDate: moment(),
       owner: '',
       room: '',
       redirectToHome: false
-    }
+    };
     this.handleChangeDate = this.handleChangeDate.bind(this);
     this.handleChangeOwner = this.handleChangeOwner.bind(this);
     this.handleChangeRoom = this.handleChangeRoom.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   handleChangeDate(date) {
-    this.setState({
-      startDate: date
-    });
+    console.log(`Date (date before setState): ${date}`);
+    this.setState({ startDate: date });
+    console.log(`Date (date after setState): ${this.state.date}`);
   }
   handleChangeOwner(e) {
     this.setState({ owner: e.target.value })
@@ -77,7 +77,7 @@ class AddBooking extends Component {
               onChange={this.handleChangeDate}
               showTimeSelect
               timeFormat="HH:mm"
-              timeIntervals={15}
+              timeIntervals={55}
               dateFormat="YYYY/MM/DD"
               timeCaption="time"
               locale="en-ca"
