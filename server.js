@@ -11,7 +11,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Connect to mongoose
-mongoose.connect('mongodb://leanjunio:Scysc;234@ds115283.mlab.com:15283/calendar');
+
+mongoose.connect('mongodb://calendar:calendar10@ds115283.mlab.com:15283/calendar', { useNewUrlParser: true });
 
 // Routes
 const userRoutes = require('./routes/user');
