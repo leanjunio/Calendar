@@ -28,11 +28,8 @@ class AddBooking extends Component {
     this.setState({ room: e.target.value })
   }
   handleSubmit = () => {
-    console.log(`Date: ${this.state.date}`)
-    console.log(`Owner: ${this.state.owner}`)
-    console.log(`room: ${this.state.room}`)
     axios.post('http://localhost:8080/calendar', {
-      date: this.state.date,
+      date: this.state.startDate,
       owner: this.state.owner,
       room: this.state.room
     })
