@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import Axios from 'axios';
+import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import { Redirect } from 'react-router-dom';
@@ -16,40 +16,33 @@ class AddBooking extends Component {
       room: '',
       redirectToHome: false
     };
-    this.handleChangeDate = this.handleChangeDate.bind(this);
-    this.handleChangeOwner = this.handleChangeOwner.bind(this);
-    this.handleChangeRoom = this.handleChangeRoom.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChangeDate(date) {
-    console.log(`Date (date before setState): ${date}`);
-    this.setState({ startDate: date });
-    console.log(`Date (date after setState): ${this.state.date}`);
+  handleChangeDate = (date) => {
+    this.setState({ startDate: date }, () => console.log(this.state.startDate));
   }
-  handleChangeOwner(e) {
+  handleChangeOwner = (e) => {
     this.setState({ owner: e.target.value })
   }
-  handleChangeRoom(e) {
+  handleChangeRoom = (e) => {
     this.setState({ room: e.target.value })
   }
-  handleSubmit() {
-    console.log({
-      date: this.state.date,
-      owner: this.state.owner,
-      room: this.state.room
-    })
-
-    Axios.post('http://localhost:8080/calendar', {
+  handleSubmit = () => {
+    console.log(`Date: ${this.state.date}`)
+    console.log(`Owner: ${this.state.owner}`)
+    console.log(`room: ${this.state.room}`)
+    axios.post('http://localhost:8080/calendar', {
       date: this.state.date,
       owner: this.state.owner,
       room: this.state.room
     })
       .then((res) => {
+        console.log(`Success: ${res}`)
         this.setState({ redirectToHome: true })
-        console.log(res)
       })
-      .catch ((err) => console.log(err));
+      .catch ((err) => {
+        console.log(`An error occured while attempting to send data to db: ${err}`)
+      });
   }
   render() {
     if (this.state.redirectToHome) {
@@ -71,15 +64,15 @@ class AddBooking extends Component {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="Date">Date - Time (YYYY-MM-DDT00:00)</Label>
+            <Label for="Date">Date - Time</Label>
             <DatePicker
+              placeholderText="Click to select a date time"
               selected={this.state.startDate}
               onChange={this.handleChangeDate}
               showTimeSelect
               timeFormat="HH:mm"
               timeIntervals={55}
               dateFormat="YYYY/MM/DD"
-              timeCaption="time"
               locale="en-ca"
             />
           </FormGroup>
