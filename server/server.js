@@ -25,4 +25,8 @@ const calRoutes = require('./routes/calendar');
 app.use('/user', userRoutes);
 app.use('/calendar', calRoutes);
 
+if (process.env.NODE_ENV === 'production') {
+	// Do stuff
+}
+
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

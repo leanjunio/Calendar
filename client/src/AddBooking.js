@@ -28,11 +28,14 @@ class AddBooking extends Component {
     this.setState({ room: e.target.value })
   }
   handleSubmit = () => {
+
+    axios.default.baseURL = 'https://calendar-lean.herokuapp.com/';
+
     axios.post('/calendar', {
       date: this.state.startDate,
       owner: this.state.owner,
       room: this.state.room
-    })
+      })
       .then((res) => {
         console.log(`Success: ${res}`)
         this.setState({ redirectToHome: true })
