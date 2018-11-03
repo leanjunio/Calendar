@@ -10,7 +10,7 @@ class Bookings extends Component {
   }
 
   componentDidMount() {
-    Axios.get(`http://localhost:8080/calendar`)
+    Axios.get(`/calendar`)
       .then(res => {
         const bookings = res.data;
         this.setState({ bookings });
